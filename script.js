@@ -1,11 +1,17 @@
 const themeBtn = document.getElementById("themeBtn");
+const sections = document.querySelectorAll(".fade-in");
 
-themeBtn.addEventListener("click", function () {
-    document.body.classList.toggle("dark-mode");
+themeBtn.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+});
 
-    if (document.body.classList.contains("dark-mode")) {
-        themeBtn.textContent = "☀️ Light Mode";
-    } else {
-        themeBtn.textContent = "🌙 Dark Mode";
-    }
+window.addEventListener("scroll", () => {
+    sections.forEach(section => {
+        const sectionTop = section.getBoundingClientRect().top;
+        const triggerPoint = window.innerHeight - 100;
+
+        if (sectionTop < triggerPoint) {
+            section.classList.add("show");
+        }
+    });
 });
